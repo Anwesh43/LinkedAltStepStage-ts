@@ -39,6 +39,12 @@ class LinkedAltStepStage {
             })
         }
     }
+
+    static init() {
+        const stage : LinkedAltStepStage = new LinkedAltStepStage()
+        stage.render()
+        stage.handleTap()
+    }
 }
 
 class State {
