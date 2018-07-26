@@ -126,6 +126,9 @@ class ASNode {
         context.lineTo(gap, 0)
         context.stroke()
         context.restore()
+        if (this.next) {
+            this.next.draw(context)
+        }
     }
 
     addNeighbor() {
@@ -175,6 +178,9 @@ class LinkedAS {
         context.strokeStyle = '#4CAF50'
         context.lineCap = 'round'
         context.lineWidth = Math.min(w, h) / 60
+        context.save()
+        context.translate(0, h/2)
         this.curr.draw(context)
+        context.restore()
     }
 }
