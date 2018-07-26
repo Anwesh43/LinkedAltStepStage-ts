@@ -6,6 +6,10 @@ class LinkedAltStepStage {
 
     context : CanvasRenderingContext2D
 
+    linkedAS : LinkedAS = new LinkedAS()
+
+    animator : Animator = new Animator()
+
     constructor() {
         this.initCanvas()
     }
@@ -20,11 +24,19 @@ class LinkedAltStepStage {
     render() {
         this.context.fillStyle = w
         this.context.fillRect(0, 0, w, h)
+        this.linkedAS.draw(this.context)
     }
 
     handleTap() {
         this.canvas.onmousedown = () => {
-
+            this.linkedAS.startUpdating(() => {
+                this.animator.start(() => {
+                    this.render()
+                    this.linkedAS.update(() => {
+                        this.animator.stop()
+                    })
+                })
+            })
         }
     }
 }
